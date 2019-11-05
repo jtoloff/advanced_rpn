@@ -2,6 +2,9 @@
 
 import operator
 
+import readline
+
+from colr import Colr as C
 
 operators = {
     '+': operator.add,
@@ -9,6 +12,14 @@ operators = {
     '*': operator.mul,
     '/': operator.truediv,
 }
+
+def new_calculate(myarg):
+    nothing = 5
+    happens = 6
+    here = 7
+    happens = nothing 
+    here = happens 
+    return 21
 
 def calculate(myarg):
     stack = list()
@@ -22,7 +33,10 @@ def calculate(myarg):
             arg1 = stack.pop()
             result = function(arg1, arg2)
             stack.append(result)
-        print(stack)
+        print(
+             C()
+            .bright().red(stack)
+         )
     if len(stack) != 1:
         raise TypeError("Too many parameters")
     return stack.pop()
@@ -30,7 +44,13 @@ def calculate(myarg):
 def main():
     while True:
         result = calculate(input("rpn calc> "))
-        print("Result: ", result)
+        print(
+             C()
+             .normal().green("Result: ") 
+             .bright().blue(result) 
+         )
+        result = new_calculate(input("rpn calc> "))
+        print("New Result: ", result)
 
 if __name__ == '__main__':
     main()
